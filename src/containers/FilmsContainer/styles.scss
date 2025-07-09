@@ -1,0 +1,9 @@
+.films{
+    &__filters{
+        display: flex;
+    }
+
+    &__genre{
+        flex: 1;
+    }
+}

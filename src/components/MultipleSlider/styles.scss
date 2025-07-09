@@ -1,0 +1,28 @@
+.multiple-slider {
+  display: inline-block;
+  margin-right: 25px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  &__start,
+  &__end {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
