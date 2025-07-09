@@ -1,8 +1,4 @@
 .films {
-  &__filters {
-    display: flex;
-  }
-
   &__item {
     margin-bottom: 15px;
 
@@ -11,11 +7,21 @@
     }
   }
 
-  &__filter-column {
+  &__multiple {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 20px;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 30px;
+  }
+
+  &__genre{
+    margin-bottom: 20px;
+  }
+
+  &__filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__genre {
@@ -23,7 +29,7 @@
   }
 
   &__multiple-slider {
-    margin-bottom: 20px;
+    margin-right: 20px;
     width: 100%;
 
     .vkuiFormItem__host {
@@ -31,13 +37,12 @@
     }
 
     &:last-child {
-      margin-bottom: 0;
+      margin-right: 0;
     }
   }
 
   &__submit {
     display: flex;
     justify-content: center;
-    width: 100%;
   }
 }
