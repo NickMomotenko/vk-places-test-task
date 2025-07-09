@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Container } from "../../components/Container";
 import { MultipleSlider } from "../../components/MultipleSlider";
 
 import "./styles.scss";
 import { ChipsSelects } from "../../components/ChipsSelect";
+import { Button } from "@vkontakte/vkui";
+import { FilmCard } from "../../components/FilmCard";
 
 export const FilmsContainer = () => {
   const [rating, setRating] = useState([0, 100]);
@@ -11,11 +12,11 @@ export const FilmsContainer = () => {
 
   return (
     <div className="films">
-      <Container>
-        <div className="films__filters">
-          <div className="films__genre">
-            <ChipsSelects />
-          </div>
+      <div className="films__filters">
+        <div className="films__genre">
+          <ChipsSelects />
+        </div>
+        <div className="films__filter-column">
           <div className="films__multiple-slider">
             <MultipleSlider
               start={rating[0]}
@@ -32,8 +33,19 @@ export const FilmsContainer = () => {
               onChange={setYear}
             />
           </div>
+          <div className="films__submit">
+            <Button size="l">Найти</Button>
+          </div>
         </div>
-      </Container>
+      </div>
+      <div className="films__list">
+        <div className="films__item">
+          <FilmCard />
+        </div>
+        <div className="films__item">
+          <FilmCard />
+        </div>
+      </div>
     </div>
   );
 };

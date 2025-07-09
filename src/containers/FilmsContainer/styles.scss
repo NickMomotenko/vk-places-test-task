@@ -1,9 +1,43 @@
-.films{
-    &__filters{
-        display: flex;
+.films {
+  &__filters {
+    display: flex;
+  }
+
+  &__item {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__filter-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+  }
+
+  &__genre {
+    flex: 1;
+  }
+
+  &__multiple-slider {
+    margin-bottom: 20px;
+    width: 100%;
+
+    .vkuiFormItem__host {
+      padding: 0;
     }
 
-    &__genre{
-        flex: 1;
+    &:last-child {
+      margin-bottom: 0;
     }
+  }
+
+  &__submit {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }

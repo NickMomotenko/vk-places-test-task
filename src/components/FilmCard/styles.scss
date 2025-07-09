@@ -1,1 +1,73 @@
-.film-card{}
+.film-card {
+  display: flex;
+  background: #fcf7f7;
+  padding: 18px;
+  border-radius: 15px;
+  color: #00000080;
+  cursor: pointer;
+
+  transition: 0.4s;
+
+  &:hover {
+    box-shadow: 0 0 10px #00000030;
+  }
+
+  &__image {
+    height: 160px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__content {
+    margin-left: 20px;
+    display: flex;
+    flex: 1;
+  }
+
+  &__info {
+    border-left: 1px solid #00000024;
+    padding: 0 20px;
+    margin-left: 20px;
+    flex: 2;
+
+    &-block {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-title {
+      font-weight: 600;
+      font-size: 23px;
+      margin-bottom: 2px;
+    }
+  }
+
+  &__title {
+    &-rus {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    &-original {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  &__year {
+    font-size: 17px;
+    margin-bottom: 5px;
+  }
+
+  &__rating {
+    margin-bottom: 5px;
+  }
+}

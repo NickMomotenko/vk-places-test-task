@@ -33,8 +33,9 @@ export const MultipleSlider: React.FC<MultipleSliderProps> = ({
         </FormItem>
       </div>
       <div className="multiple-slider__footer">
-        <div className="multiple-slider__start">{start}</div>
-        <div className="multiple-slider__end">{end}</div>
+        <div className="multiple-slider__value">
+          {start}-{end}
+        </div>
       </div>
     </div>
   );

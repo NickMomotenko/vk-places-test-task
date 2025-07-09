@@ -1,6 +1,6 @@
 .multiple-slider {
   display: inline-block;
-  margin-right: 25px;
+  width: 100%;
 
   &:last-child {
     margin-right: 0;
@@ -16,12 +16,11 @@
   &__footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 5px;
   }
 
-  &__start,
-  &__end {
+  &__value {
     font-size: 15px;
     font-weight: 500;
   }
