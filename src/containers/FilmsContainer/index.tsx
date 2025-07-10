@@ -7,10 +7,15 @@ import { FilmCard } from "../../components/FilmCard";
 import { fetchMovies } from "../../api/api";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
 import { useEffect } from "react";
+import { films } from "../../helpers/mocked";
+import { Title } from "../../components/Title";
+import { useFavorites } from "../../hooks/useFavorites";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
   const { rating, year, genres } = filters;
+
+  const { addToFavorite, isFavorite } = useFavorites();
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -26,6 +31,10 @@ export const FilmsContainer = () => {
 
     // loadMovies();
   }, []);
+
+  const handleAddToFavorites = (film: any) => {
+    addToFavorite(film);
+  };
 
   return (
     <div className="films">
@@ -64,13 +73,18 @@ export const FilmsContainer = () => {
           </div>
         </div>
       </div>
-      <div className="films__list">
-        {/* {[...new Array(1)].map((_, ind) => (
-          <div className="films__item">
-            <FilmCard key={ind} fullview />
-          </div>
-        ))} */}
-      </div>
+      <Title>Все фильмы</Title>
+      <ul className="films__list">
+        {films?.map((film, ind) => (
+          <li className="films__item" key={ind}>
+            <FilmCard
+              film={film}
+              onAddClick={handleAddToFavorites}
+              isFavorite={isFavorite(film?.id)}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
