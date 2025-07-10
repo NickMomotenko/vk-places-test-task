@@ -7,8 +7,8 @@ import { Button } from "@vkontakte/vkui";
 import { FilmCard } from "../../components/FilmCard";
 
 export const FilmsContainer = () => {
-  const [rating, setRating] = useState([0, 100]);
-  const [year, setYear] = useState([0, 100]);
+  const [rating, setRating] = useState([0, 10]);
+  const [year, setYear] = useState([1990, new Date().getFullYear()]);
 
   return (
     <div className="films">
@@ -20,18 +20,20 @@ export const FilmsContainer = () => {
           <div className="films__multiple">
             <div className="films__multiple-slider">
               <MultipleSlider
-                start={rating[0]}
-                end={rating[1]}
                 title="По рейтингу"
+                value={rating}
                 onChange={setRating}
+                min={0}
+                max={10}
               />
             </div>
             <div className="films__multiple-slider">
               <MultipleSlider
-                start={year[0]}
-                end={year[1]}
+                value={year}
                 title="По году выпуска"
                 onChange={setYear}
+                min={1990}
+                max={new Date().getFullYear()}
               />
             </div>
           </div>

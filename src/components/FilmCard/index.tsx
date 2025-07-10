@@ -2,6 +2,7 @@ import "./styles.scss";
 
 import { film } from "../../helpers/mocked";
 import { normalizeDate } from "../../helpers/utils";
+import { useNavigate } from "react-router-dom";
 
 type FilmCard = {
   fullview?: boolean;
@@ -19,7 +20,7 @@ export const FilmCard: React.FC<FilmCard> = ({ fullview = false }) => {
     genres,
   } = film;
 
-  console.log(film);
+  const navigate = useNavigate();
 
   return (
     <div className="film-card">
