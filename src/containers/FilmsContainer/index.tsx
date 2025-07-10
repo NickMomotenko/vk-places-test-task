@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { MultipleSlider } from "../../components/MultipleSlider";
 
 import "./styles.scss";
@@ -7,46 +6,37 @@ import { Button } from "@vkontakte/vkui";
 import { FilmCard } from "../../components/FilmCard";
 import { fetchMovies } from "../../api/api";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
-
-// useEffect(() => {
-//   const loadMovies = async () => {
-//     try {
-//       const data = await fetchMovies(); // можно передать page, если нужно
-//       console.log(data);
-//     } catch (err) {
-//       console.error(err);
-//     } finally {
-//       // setLoading(false);
-//     }
-//   };
-
-//   // loadMovies();
-// }, []);
+import { useEffect } from "react";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
-
-  const [rating, setRating] = useState<[number, number]>([0, 10]);
-  const [year, setYear] = useState<[number, number]>([
-    1990,
-    new Date().getFullYear(),
-  ]);
-  const [genres, setGenres] = useState<string[]>([]);
+  const { rating, year, genres } = filters;
 
   useEffect(() => {
-    updateFilter({
-      rating,
-      year,
-    });
-  }, [rating, year]);
+    const loadMovies = async () => {
+      try {
+        const data = await fetchMovies();
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        // setLoading(false);
+      }
+    };
 
-  console.log(genres);
+    // loadMovies();
+  }, []);
 
   return (
     <div className="films">
       <div className="films__filters">
         <div className="films__genre">
-          <ChipsSelects data={genres} onChange={setGenres} />
+          <ChipsSelects
+            data={genres}
+            onChange={(selectedGenres: any) =>
+              updateFilter({ genres: selectedGenres })
+            }
+          />
         </div>
         <div className="films__filter">
           <div className="films__multiple">
@@ -54,7 +44,7 @@ export const FilmsContainer = () => {
               <MultipleSlider
                 title="По рейтингу"
                 value={rating}
-                onChange={setRating}
+                onChange={(newValue: any) => updateFilter({ rating: newValue })}
                 min={0}
                 max={10}
               />
@@ -63,7 +53,7 @@ export const FilmsContainer = () => {
               <MultipleSlider
                 value={year}
                 title="По году выпуска"
-                onChange={setYear}
+                onChange={(newValue: any) => updateFilter({ year: newValue })}
                 min={1990}
                 max={new Date().getFullYear()}
               />

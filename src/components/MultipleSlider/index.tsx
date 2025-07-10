@@ -7,7 +7,7 @@ type MultipleSliderProps = {
   min?: number;
   max?: number;
   value: any;
-  onChange: (value: any) => void;
+  onChange: any;
 };
 
 export const MultipleSlider: React.FC<MultipleSliderProps> = ({
@@ -31,7 +31,7 @@ export const MultipleSlider: React.FC<MultipleSliderProps> = ({
             getAriaValueText={(value, index) =>
               index === 0 ? `Start thumb is ${value}` : `End thumb is ${value}`
             }
-            onChange={(value) => onChange(value as [number, number])}
+            onChange={onChange}
           />
         </FormItem>
       </div>
