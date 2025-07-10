@@ -1,0 +1,17 @@
+.favorite-films {
+  &__list {
+    margin-bottom: -15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__item {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

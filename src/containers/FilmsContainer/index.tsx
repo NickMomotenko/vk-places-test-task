@@ -32,10 +32,6 @@ export const FilmsContainer = () => {
     // loadMovies();
   }, []);
 
-  const handleAddToFavorites = (film: any) => {
-    addToFavorite(film);
-  };
-
   return (
     <div className="films">
       <div className="films__filters">
@@ -79,7 +75,7 @@ export const FilmsContainer = () => {
           <li className="films__item" key={ind}>
             <FilmCard
               film={film}
-              onAddClick={handleAddToFavorites}
+              onAddClick={addToFavorite}
               isFavorite={isFavorite(film?.id)}
             />
           </li>

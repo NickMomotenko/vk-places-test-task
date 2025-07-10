@@ -8,7 +8,7 @@ type FilmCard = {
   fullview?: boolean;
   film?: any;
   onAddClick?: any;
-  isFavorite: boolean;
+  isFavorite?: boolean;
 };
 
 export const FilmCard: React.FC<FilmCard> = ({
