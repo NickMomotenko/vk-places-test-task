@@ -1,19 +1,28 @@
-import { ChipsSelect as ChipsSelectVK, FormItem } from "@vkontakte/vkui";
-import { useState } from "react";
+import {
+  ChipsSelect as ChipsSelectVK,
+  FormItem,
+  type ChipOption,
+} from "@vkontakte/vkui";
 import { genres } from "../../helpers/mocked";
 
 import "./styles.scss";
 
-export const ChipsSelects = () => {
-  const [selectedColorsCopy, setSelectedColorsCopy] = useState([]);
+type ChipsSelectsProps = {
+  data: ChipOption[];
+  onChange: any;
+};
 
+export const ChipsSelects: React.FC<ChipsSelectsProps> = ({
+  data,
+  onChange,
+}) => {
   return (
     <div className="chips-select">
       <FormItem htmlFor="colorsWithoutButton" top="Выберите или добавьте жанр">
         <ChipsSelectVK
           id="colorsWithoutButton"
-          value={selectedColorsCopy}
-          onChange={setSelectedColorsCopy}
+          value={data.map((item) => ({ value: item, label: item }))}
+          onChange={(newValue) => onChange(newValue.map((item) => item.value))}
           options={genres.map(({ name }) => {
             return { value: name, label: name };
           })}

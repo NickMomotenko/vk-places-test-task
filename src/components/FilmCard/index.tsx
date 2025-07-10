@@ -3,6 +3,7 @@ import "./styles.scss";
 import { film } from "../../helpers/mocked";
 import { normalizeDate } from "../../helpers/utils";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@vkontakte/vkui";
 
 type FilmCard = {
   fullview?: boolean;
@@ -40,6 +41,9 @@ export const FilmCard: React.FC<FilmCard> = ({ fullview = false }) => {
               Дата выхода - {normalizeDate(premiere?.world)}
             </div>
           )}
+          {/* <div className="film-card__favorites">
+            <Button>В избранное</Button>
+          </div> */}
         </div>
         {fullview && (
           <div className="film-card__info">

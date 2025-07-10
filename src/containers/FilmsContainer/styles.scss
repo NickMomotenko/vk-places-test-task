@@ -1,6 +1,14 @@
 .films {
+  &__list{
+    margin-bottom: -15px;
+    margin-right: -20px;
+    display: flex;
+  }
+
   &__item {
     margin-bottom: 15px;
+    margin-right: 20px;
+    flex: 1;
 
     &:last-child {
       margin-bottom: 0;

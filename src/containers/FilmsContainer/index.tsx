@@ -1,20 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MultipleSlider } from "../../components/MultipleSlider";
 
 import "./styles.scss";
 import { ChipsSelects } from "../../components/ChipsSelect";
 import { Button } from "@vkontakte/vkui";
 import { FilmCard } from "../../components/FilmCard";
+import { fetchMovies } from "../../api/api";
+import { useMovieFilters } from "../../hooks/useMovieFilters";
+
+// useEffect(() => {
+//   const loadMovies = async () => {
+//     try {
+//       const data = await fetchMovies(); // можно передать page, если нужно
+//       console.log(data);
+//     } catch (err) {
+//       console.error(err);
+//     } finally {
+//       // setLoading(false);
+//     }
+//   };
+
+//   // loadMovies();
+// }, []);
 
 export const FilmsContainer = () => {
-  const [rating, setRating] = useState([0, 10]);
-  const [year, setYear] = useState([1990, new Date().getFullYear()]);
+  const { filters, updateFilter } = useMovieFilters();
+
+  const [rating, setRating] = useState<[number, number]>([0, 10]);
+  const [year, setYear] = useState<[number, number]>([
+    1990,
+    new Date().getFullYear(),
+  ]);
+  const [genres, setGenres] = useState<string[]>([]);
+
+  useEffect(() => {
+    updateFilter({
+      rating,
+      year,
+    });
+  }, [rating, year]);
+
+  console.log(genres);
 
   return (
     <div className="films">
       <div className="films__filters">
         <div className="films__genre">
-          <ChipsSelects />
+          <ChipsSelects data={genres} onChange={setGenres} />
         </div>
         <div className="films__filter">
           <div className="films__multiple">
@@ -43,12 +75,11 @@ export const FilmsContainer = () => {
         </div>
       </div>
       <div className="films__list">
-        <div className="films__item">
-          <FilmCard />
-        </div>
-        <div className="films__item">
-          <FilmCard />
-        </div>
+        {/* {[...new Array(1)].map((_, ind) => (
+          <div className="films__item">
+            <FilmCard key={ind} fullview />
+          </div>
+        ))} */}
       </div>
     </div>
   );
