@@ -9,10 +9,12 @@ import "./styles.scss";
 type ChipsSelectsProps = {
   data: any;
   onChange: any;
+  disabled?:boolean;
 };
 
 export const ChipsSelects: React.FC<ChipsSelectsProps> = ({
   data,
+  disabled,
   onChange,
 }) => {
   return (
@@ -25,6 +27,7 @@ export const ChipsSelects: React.FC<ChipsSelectsProps> = ({
           options={genres.map(({ name }) => {
             return { value: name, label: name };
           })}
+          disabled={disabled}
           creatable={true}
           placeholder="Не выбраны"
         />

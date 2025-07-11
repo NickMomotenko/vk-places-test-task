@@ -8,10 +8,12 @@ type MultipleSliderProps = {
   max?: number;
   value: any;
   onChange: any;
+  disabled?:boolean;
 };
 
 export const MultipleSlider: React.FC<MultipleSliderProps> = ({
   title,
+  disabled,
   value,
   min,
   max,
@@ -28,6 +30,7 @@ export const MultipleSlider: React.FC<MultipleSliderProps> = ({
             min={min}
             max={max}
             value={value}
+            disabled={disabled}
             getAriaValueText={(value, index) =>
               index === 0 ? `Start thumb is ${value}` : `End thumb is ${value}`
             }

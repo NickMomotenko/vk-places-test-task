@@ -20,24 +20,28 @@ export const FavoritesFilmsContainer = () => {
     <div className="favorite-films">
       <Title>Избранные фильмы</Title>
       <div className="favorite-films__content">
-        <ul className="favorite-films__list">
-          {favorites?.map((film, ind) => (
-            <li className="favorite-films__item" key={ind}>
-              <FilmCard
-                film={film}
-                isFavorite={isFavorite(film?.id)}
-                onAddClick={openWithFilm}
-              />
-            </li>
-          ))}
-        </ul>
-        <ModalContainer
-          isActive={modal.isActive}
-          onAdd={confirmAdd}
-          onClose={cancel}
-          isFavorite={isFavorite(filmToFavorites?.id)}
-        />
+        {!favorites.length ? (
+          <Title level="3">Пока что тут ничего нету ;(</Title>
+        ) : (
+          <ul className="favorite-films__list">
+            {favorites?.map((film, ind) => (
+              <li className="favorite-films__item" key={ind}>
+                <FilmCard
+                  film={film}
+                  isFavorite={isFavorite(film?.id)}
+                  onAddClick={openWithFilm}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
+      <ModalContainer
+        isActive={modal.isActive}
+        onAdd={confirmAdd}
+        onClose={cancel}
+        isFavorite={isFavorite(filmToFavorites?.id)}
+      />
     </div>
   );
 };
