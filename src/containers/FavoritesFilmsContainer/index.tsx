@@ -1,7 +1,6 @@
 import { FilmCard } from "../../components/FilmCard";
 import { Title } from "../../components/Title";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-import { useFavorites } from "../../hooks/useFavorites";
 import { ModalContainer } from "../ModalContainer";
 
 import "./styles.scss";

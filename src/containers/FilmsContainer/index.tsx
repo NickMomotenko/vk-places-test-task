@@ -6,12 +6,9 @@ import { Button } from "@vkontakte/vkui";
 import { FilmCard } from "../../components/FilmCard";
 import { fetchMovies } from "../../api/api";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
-import { useEffect } from "react";
 import { films } from "../../helpers/mocked";
 import { Title } from "../../components/Title";
-import { useFavorites } from "../../hooks/useFavorites";
 import { SkeletonCard } from "../../components/SkeletonCard";
-import { useModal } from "../../hooks/useModal";
 import { ModalContainer } from "../ModalContainer";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 
