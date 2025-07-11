@@ -1,0 +1,48 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: #ffffffc2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  pointer-events: none;
+
+  &--active {
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  &__content {
+    width: 40%;
+    min-height: 50px;
+    background: #ffffff;
+    box-shadow: 0 0 10px #c29a9a61;
+    border-radius: 15px;
+    padding: 20px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  &__button {
+    margin-right: 20px !important;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.skeleton {
+  height: 180px;
+  border: 1px solid #fcf7f7;
+  padding: 18px;
+  border-radius: 15px;
+  display: flex;
+
+  &__poster {
+    height: 145px;
+    width: 130px !important;
+  }
+
+  &__body {
+    margin-left: 20px;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__row {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__button{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

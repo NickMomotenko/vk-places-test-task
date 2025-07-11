@@ -10,27 +10,38 @@ import { useEffect } from "react";
 import { films } from "../../helpers/mocked";
 import { Title } from "../../components/Title";
 import { useFavorites } from "../../hooks/useFavorites";
+import { SkeletonCard } from "../../components/SkeletonCard";
+import { useModal } from "../../hooks/useModal";
+import { ModalContainer } from "../ModalContainer";
+import { useFavoriteModal } from "../../hooks/useFavoriteModal";
+
+// useEffect(() => {
+//   const loadMovies = async () => {
+//     try {
+//       const data = await fetchMovies();
+//       console.log(data);
+//     } catch (err) {
+//       console.error(err);
+//     } finally {
+//       // setLoading(false);
+//     }
+//   };
+
+//   // loadMovies();
+// }, []);
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
   const { rating, year, genres } = filters;
 
-  const { addToFavorite, isFavorite } = useFavorites();
-
-  useEffect(() => {
-    const loadMovies = async () => {
-      try {
-        const data = await fetchMovies();
-        console.log(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        // setLoading(false);
-      }
-    };
-
-    // loadMovies();
-  }, []);
+  const {
+    modal,
+    isFavorite,
+    filmToFavorites,
+    openWithFilm,
+    confirmAdd,
+    cancel,
+  } = useFavoriteModal();
 
   return (
     <div className="films">
@@ -71,16 +82,27 @@ export const FilmsContainer = () => {
       </div>
       <Title>Все фильмы</Title>
       <ul className="films__list">
+        {[...new Array(2)]?.map((film, ind) => (
+          <li className="films__item" key={ind}>
+            <SkeletonCard />
+          </li>
+        ))}
         {films?.map((film, ind) => (
           <li className="films__item" key={ind}>
             <FilmCard
               film={film}
-              onAddClick={addToFavorite}
+              onAddClick={openWithFilm}
               isFavorite={isFavorite(film?.id)}
             />
           </li>
         ))}
       </ul>
+      <ModalContainer
+        isActive={modal.isActive}
+        onAdd={confirmAdd}
+        onClose={cancel}
+        isFavorite={isFavorite(filmToFavorites?.id)}
+      />
     </div>
   );
 };
