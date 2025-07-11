@@ -1,8 +1,11 @@
-import "./styles.scss";
+import { useNavigate } from "react-router-dom";
+А;
+
+import { Button } from "@vkontakte/vkui";
 
 import { normalizeDate } from "../../helpers/utils";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@vkontakte/vkui";
+
+import "./styles.scss";
 
 type FilmCard = {
   fullview?: boolean;

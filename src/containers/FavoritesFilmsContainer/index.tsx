@@ -1,7 +1,11 @@
 import { FilmCard } from "../../components/FilmCard";
+import { InfiniteBlock } from "../../components/InfiniteBlock";
 import { Title } from "../../components/Title";
-import { useFavoriteModal } from "../../hooks/useFavoriteModal";
+
 import { ModalContainer } from "../ModalContainer";
+
+import { useFavoriteModal } from "../../hooks/useFavoriteModal";
+import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";
 
 import "./styles.scss";
 
@@ -16,6 +20,11 @@ export const FavoritesFilmsContainer = () => {
     cancel,
   } = useFavoriteModal();
 
+  const { data: favoritesData, sentryRef } = useInfiniteScrollData({
+    items: favorites,
+    pageSize: 10,
+  });
+
   return (
     <div className="favorite-films">
       <Title>Избранные фильмы</Title>
@@ -24,7 +33,7 @@ export const FavoritesFilmsContainer = () => {
           <Title level="3">Пока что тут ничего нету ;(</Title>
         ) : (
           <ul className="favorite-films__list">
-            {favorites?.map((film, ind) => (
+            {favoritesData?.map((film, ind) => (
               <li className="favorite-films__item" key={ind}>
                 <FilmCard
                   film={film}
@@ -35,6 +44,7 @@ export const FavoritesFilmsContainer = () => {
             ))}
           </ul>
         )}
+        <InfiniteBlock ref={sentryRef} />
       </div>
       <ModalContainer
         isActive={modal.isActive}

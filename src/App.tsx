@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Container } from "./components/Container";
-
 import { FilmDetailsContainer } from "./containers/FilmDetailsContainer";
 import { FilmsContainer } from "./containers/FilmsContainer";
 import { FavoritesFilmsContainer } from "./containers/FavoritesFilmsContainer";
+
+import { Container } from "./components/Container";
 import { Menu } from "./components/Menu";
 
 function App() {

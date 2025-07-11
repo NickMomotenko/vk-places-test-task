@@ -2,6 +2,7 @@ import {
   ChipsSelect as ChipsSelectVK,
   FormItem,
 } from "@vkontakte/vkui";
+
 import { genres } from "../../helpers/mocked";
 
 import "./styles.scss";

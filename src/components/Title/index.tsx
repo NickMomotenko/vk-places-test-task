@@ -1,4 +1,5 @@
 import { Title as TitleVKUI } from "@vkontakte/vkui";
+
 import "./styles.scss";
 
 type TitleProps = {

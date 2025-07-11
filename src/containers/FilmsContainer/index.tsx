@@ -1,18 +1,23 @@
-import { MultipleSlider } from "../../components/MultipleSlider";
+import { useSearchParams } from "react-router-dom";
 
-import "./styles.scss";
+import { MultipleSlider } from "../../components/MultipleSlider";
 import { ChipsSelects } from "../../components/ChipsSelect";
-import { Button, Spinner } from "@vkontakte/vkui";
 import { FilmCard } from "../../components/FilmCard";
-import { fetchMovies } from "../../api/api";
-import { useMovieFilters } from "../../hooks/useMovieFilters";
-import { films } from "../../helpers/mocked";
 import { Title } from "../../components/Title";
 import { SkeletonCard } from "../../components/SkeletonCard";
+import { InfiniteBlock } from "../../components/InfiniteBlock";
+
 import { ModalContainer } from "../ModalContainer";
+
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useMovieFilters } from "../../hooks/useMovieFilters";
+import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";
+
+import { fetchMovies } from "../../api/api";
+
+import { Button, Spinner } from "@vkontakte/vkui";
+
+import "./styles.scss";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
@@ -29,32 +34,23 @@ export const FilmsContainer = () => {
     cancel,
   } = useFavoriteModal();
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    loadMovies();
-  }, []);
-
-  const loadMovies = async () => {
-    // setIsLoading(true);
-    // try {
-    //   const data = await fetchMovies(searchParams);
-    //   console.log(data);
-    // } catch (err) {
-    //   console.error(err);
-    // } finally {
-    //   setTimeout(() => {
-    //     setIsLoading(false);
-    //   }, 4000);
-    // }
-  };
+  const {
+    data: movies,
+    sentryRef,
+    reset,
+    loading,
+  } = useInfiniteScrollData({
+    fetchPage: (page) => fetchMovies(searchParams, page, 10),
+    pageSize: 10,
+    maxPages: 5,
+  });
 
   return (
     <div className="films">
       <div className="films__filters">
         <div className="films__genre">
           <ChipsSelects
-            disabled={true}
+            disabled={false}
             data={genres}
             onChange={(selectedGenres: any) =>
               updateFilter({ genres: selectedGenres })
@@ -66,7 +62,7 @@ export const FilmsContainer = () => {
             <div className="films__multiple-slider">
               <MultipleSlider
                 title="По рейтингу"
-                disabled={true}
+                disabled={loading}
                 value={rating}
                 onChange={(newValue: any) => updateFilter({ rating: newValue })}
                 min={0}
@@ -76,7 +72,7 @@ export const FilmsContainer = () => {
             <div className="films__multiple-slider">
               <MultipleSlider
                 value={year}
-                disabled={true}
+                disabled={loading}
                 title="По году выпуска"
                 onChange={(newValue: any) => updateFilter({ year: newValue })}
                 min={1990}
@@ -85,35 +81,38 @@ export const FilmsContainer = () => {
             </div>
           </div>
           <div className="films__submit">
-            <Button size="l" onClick={loadMovies} disabled>
-              {isLoading ? <Spinner style={{ color: "#fff" }} /> : "Найти"}
+            <Button
+              size="l"
+              onClick={() => {
+                reset();
+              }}
+              disabled={loading}
+            >
+              {loading ? <Spinner style={{ color: "#fff" }} /> : "Найти"}
             </Button>
           </div>
         </div>
       </div>
       <Title>Все фильмы</Title>
       <div className="films__content">
-        {!films.length || isLoading ? (
-          <ul className="films__list">
-            {[...new Array(4)]?.map((film, ind) => (
-              <li className="films__item" key={ind}>
-                <SkeletonCard />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <ul className="films__list">
-            {films?.map((film, ind) => (
-              <li className="films__item" key={ind}>
-                <FilmCard
-                  film={film}
-                  onAddClick={openWithFilm}
-                  isFavorite={isFavorite(film?.id)}
-                />
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className="films__list">
+          {movies.length === 0 && loading
+            ? [...Array(4)].map((_, ind) => (
+                <li className="films__item" key={ind}>
+                  <SkeletonCard />
+                </li>
+              ))
+            : movies.map((film, ind) => (
+                <li className="films__item" key={ind}>
+                  <FilmCard
+                    film={film}
+                    onAddClick={openWithFilm}
+                    isFavorite={isFavorite(film?.id)}
+                  />
+                </li>
+              ))}
+        </ul>
+        <InfiniteBlock ref={sentryRef} />
       </div>
       {modal.isActive && (
         <ModalContainer
