@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { ROUTES } from "./../../helpers/routes";
 
@@ -12,7 +12,9 @@ export const Menu = () => {
           <li className="menu__item" key={ind}>
             <NavLink
               to={route}
-              className={({ isActive }) => (isActive ? "menu__link active" : "menu__link")}
+              className={({ isActive }) =>
+                isActive ? "menu__link active" : "menu__link"
+              }
             >
               {name}
             </NavLink>
