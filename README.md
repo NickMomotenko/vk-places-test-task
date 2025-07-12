@@ -1,69 +1,87 @@
-# React + TypeScript + Vite
+# 🎬 Фильмотека (Demo-приложение)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔗 Демо
+[Ссылка на демо-приложение](#) *(укажите URL)*
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Установка и запуск
 
-## Expanding the ESLint configuration
+```bash
+# С Yarn
+yarn
+yarn dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# или с npm
+npm install
+npm run start
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 Структура проекта
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+│
+├── api/               # API-запросы к серверу
+├── components/        # Презентационные (UI) компоненты без логики
+├── containers/        # Контейнеры с логикой и обработкой данных
+├── helpers/           # Вспомогательные функции
+└── hooks/             # Кастомные хуки для управления данными
+```
+
+### Контейнеры
+
+- **FilmsContainer**  
+  Отображает список фильмов. Использует API и фильтры. Реализован бесконечный скролл (infinite scroll).  
+  Данные не кешируются — каждый reload или смена фильтров делает новый запрос.
+
+- **FavoritesFilmsContainer**  
+  Показывает фильмы, добавленные в Избранное. Данные берутся из `localStorage`. Также поддерживает infinite scroll.
+
+- **FilmDetailsContainer**  
+  Загружает полную информацию о фильме по `id` из URL и делает запрос к API.
+
+---
+
+## 🧠 Особенности реализации
+
+### 🔍 Фильтры
+
+- Фильтры синхронизированы с `URLSearchParams`:
+  - При изменении фильтров — обновляется URL.
+  - Если открыть ссылку с фильтрами — интерфейс и фильтры обновятся по URL.
+- Обработка ошибок:
+  - Для **рейтинга** (`rating.kp`) допустимый диапазон — от `0` до `10`.
+  - Для **года выпуска** (`year`) по ТЗ: `1990`–`2025`, но API принимает от `1874` до `2050`.
+
+  ✅ Если URL содержит недопустимое значение, например `?rating.kp=11` или `?year=1800`, приложение:
+  - Попытается сделать запрос
+  - Получит ошибку
+  - Исправит URL на ближайшее допустимое значение
+
+---
+
+## 🧩 Компоненты
+
+### FilmCard
+- Возможность добавить/удалить фильм в/из избранного
+- При действии появляется **модальное окно подтверждения**
+- Если данные ещё не загружены — отображается **Skeleton-заглушка**
+
+---
+
+## 💾 Хранение Избранного
+
+- Используется `localStorage`
+- Избранные фильмы доступны при перезагрузке
+
+---
+
+## ✅ Технологии
+- React
+- TypeScript
+- React Router
+- Custom hooks
+- Fetch API

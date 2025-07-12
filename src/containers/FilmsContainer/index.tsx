@@ -7,7 +7,7 @@ import { Title } from "../../components/Title";
 import { SkeletonCard } from "../../components/SkeletonCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 
-import { ModalContainer } from "../ModalContainer";
+import { ModalContainer } from "../../components/ModalContainer";
 
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
@@ -40,6 +40,7 @@ export const FilmsContainer = () => {
     sentryRef,
     reset,
     loading,
+    error,
   } = useInfiniteScrollData({
     fetchPage: (page) => fetchMovies(searchParams, page, 10),
     pageSize: 10,
@@ -51,6 +52,12 @@ export const FilmsContainer = () => {
       window.scrollTo({ top: 0, behavior: "auto" });
     }, 0);
   }, []);
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   return (
     <div className="films">
@@ -71,7 +78,7 @@ export const FilmsContainer = () => {
                 title="По рейтингу"
                 disabled={loading}
                 value={rating}
-                onChange={(newValue: any) => updateFilter({ rating: newValue })}
+                onChange={(newValue: any) => updateFilter({ 'rating.kp': newValue })}
                 min={0}
                 max={10}
               />
@@ -102,6 +109,7 @@ export const FilmsContainer = () => {
       </div>
       <Title>Все фильмы</Title>
       <div className="films__content">
+        {error && <Title>{error}</Title>}
         <ul className="films__list">
           {movies.length === 0 && loading
             ? [...Array(4)].map((_, ind) => (
@@ -119,7 +127,7 @@ export const FilmsContainer = () => {
                 </li>
               ))}
         </ul>
-        <InfiniteBlock ref={sentryRef} />
+        <InfiniteBlock ref={sentryRef} loading={loading} />
       </div>
       {modal.isActive && (
         <ModalContainer

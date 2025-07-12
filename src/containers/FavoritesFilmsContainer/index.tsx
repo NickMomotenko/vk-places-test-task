@@ -2,7 +2,7 @@ import { FilmCard } from "../../components/FilmCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 import { Title } from "../../components/Title";
 
-import { ModalContainer } from "../ModalContainer";
+import { ModalContainer } from "../../components/ModalContainer";
 
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 // import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";

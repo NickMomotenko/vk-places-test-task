@@ -57,22 +57,26 @@ export const FilmCard: React.FC<FilmCard> = ({
           <div className="film-card__main">
             <div className="film-card__title">{name ?? alternativeName}</div>
             <div className="film-card__year">Год выпуска - {year}</div>
-            <div className="film-card__rating">Рейтинг - {rating?.kp}</div>
+            <div className="film-card__rating">
+              Рейтинг - {rating?.kp} (кинопоиск)
+            </div>
             {fullview && (
               <div className="film-card__created-at">
-                Дата выхода - {normalizeDate(premiere?.world)}
+                Дата выхода -{" "}
+                {premiere?.world
+                  ? normalizeDate(premiere?.world)
+                  : "неизвестна"}
               </div>
             )}
-            {/* <div className="film-card__favorites">
-            <Button>В избранное</Button>
-          </div> */}
           </div>
           {fullview && (
             <div className="film-card__info">
               <div className="film-card__info-block">
                 <div className="film-card__info-title">Жанры</div>
                 <div className="film-card__info-text">
-                  {genres.map((genre) => genre.name).join(", ")}
+                  {genres
+                    ? "неизвестно"
+                    : genres?.map((genre) => genre.name).join(", ")}
                 </div>
               </div>
               <div className="film-card__info-block">

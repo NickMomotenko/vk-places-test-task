@@ -1,4 +1,5 @@
-const API_KEY = "3M4PM11-HNQMSZB-N4QY5C9-VWBQSXP";
+// const API_KEY = "3M4PM11-HNQMSZB-N4QY5C9-VWBQSXP"; // 1
+const API_KEY = "N92J5CH-5C6M21R-G6ZS6NY-PKBKJ78";
 const BASE_URL = "https://api.kinopoisk.dev/v1.4/movie";
 
 export async function fetchMovies(
@@ -16,11 +17,15 @@ export async function fetchMovies(
     },
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("Ошибка при загрузке фильмов");
+    const message = `Ошибка при загрузке фильмов! ${
+      Array.isArray(data?.message) ? data?.message[0] : data?.message
+    }`;
+    throw new Error(message);
   }
 
-  const data = await response.json();
   return data.docs;
 }
 
@@ -32,10 +37,14 @@ export async function fetchMovieById(id: number) {
     },
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("Ошибка при загрузке фильмов");
+    const message = `Ошибка при загрузке выбранного фильма! ${
+      Array.isArray(data?.message) ? data?.message[0] : data?.message
+    }`;
+    throw new Error(message);
   }
 
-  const data = await response.json();
   return data;
 }

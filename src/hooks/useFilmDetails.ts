@@ -3,12 +3,22 @@ import { fetchMovieById } from "../api/api";
 
 export const useFilmDetails = () => {
   const [filmWithDetails, setFilmWithDetals] = useState({});
+  const [error, setError] = useState("");
 
   const loadDetailsById = async (id: number) => {
-    const data = await fetchMovieById(id);
+    try {
+      setError(""); // сброс предыдущей ошибки, если была
+      const data = await fetchMovieById(id);
+      setFilmWithDetals(data);
+    } catch (error: any) {
+      setError(() => {
+        const errorMessage =
+          error instanceof Error ? error.message : "Неизвестная ошибка";
 
-    setFilmWithDetals(data);
+        return errorMessage;
+      });
+    }
   };
 
-  return { filmWithDetails, loadDetailsById };
+  return { filmWithDetails, loadDetailsById, error };
 };

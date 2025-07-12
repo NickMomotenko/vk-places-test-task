@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const useMovieFilters = () => {
@@ -15,11 +16,35 @@ export const useMovieFilters = () => {
   };
 
   const genres = searchParams.getAll("genres.name");
-  const ratingParam = searchParams.get("rating") || "";
+  const ratingParam = searchParams.get("rating.kp") || "";
   const yearParam = searchParams.get("year") || "";
 
   const rating = parseRange(ratingParam, [0, 10]);
   const year = parseRange(yearParam, [1990, new Date().getFullYear()]);
+
+  useEffect(() => {
+    doCorrectValues(year, "year" , [1874 , 2050]);
+    doCorrectValues(rating, "rating.kp" , [0,10]);
+  }, [yearParam , ratingParam]);
+
+  const doCorrectValues = (values: any, key: string , configValues: [number, number]) => {
+    const [start, end] = values;
+
+    const minValue = configValues[0];
+    const maxValue = configValues[1];
+
+
+    const fixedStart = Math.max(minValue, Math.min(maxValue, start));
+    const fixedEnd = Math.max(minValue, Math.min(maxValue, end));
+
+    if (fixedStart !== start || fixedEnd !== end) {
+      const newValue =
+        fixedStart === fixedEnd ? `${fixedStart}` : `${fixedStart}-${fixedEnd}`;
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set(key, newValue);
+      setSearchParams(newParams);
+    }
+  };
 
   // ===== Update Filters =====
   const updateFilter = (

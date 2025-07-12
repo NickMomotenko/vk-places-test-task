@@ -3,14 +3,25 @@ import { useParams } from "react-router-dom";
 import { FilmCard } from "../../components/FilmCard";
 import { SkeletonCard } from "../../components/SkeletonCard";
 
-// import { film } from "./../../helpers/mocked";
 import { useEffect } from "react";
 import { useFilmDetails } from "../../hooks/useFilmDetails";
+import { Title } from "../../components/Title";
+import { useFavoriteModal } from "../../hooks/useFavoriteModal";
+import { ModalContainer } from "../../components/ModalContainer";
 
 export const FilmDetailsContainer = () => {
   const params = useParams();
 
-  const { loadDetailsById, filmWithDetails } = useFilmDetails();
+  const { loadDetailsById, filmWithDetails, error } = useFilmDetails();
+
+  const {
+    modal,
+    isFavorite,
+    filmToFavorites,
+    openWithFilm,
+    confirmAdd,
+    cancel,
+  } = useFavoriteModal();
 
   useEffect(() => {
     const { id } = params;
@@ -22,13 +33,35 @@ export const FilmDetailsContainer = () => {
     handleLoadFilDetailsById();
   }, [params.id]);
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
+
   return (
     <div className="film-details">
-      {Object.keys(filmWithDetails).length === 0 ? (
+      <Title>Выбранный фильм</Title>
+      {error ? (
+        <Title>{error}</Title>
+      ) : Object.keys(filmWithDetails).length === 0 ? (
         <SkeletonCard />
       ) : (
-        <FilmCard fullview film={filmWithDetails} />
+        <FilmCard
+          fullview
+          film={filmWithDetails}
+          isFavorite={isFavorite(filmWithDetails?.id)}
+          onAddClick={openWithFilm}
+        />
       )}
+      <ModalContainer
+        isActive={modal.isActive}
+        onAdd={() => {
+          confirmAdd();
+        }}
+        onClose={cancel}
+        isFavorite={isFavorite(filmToFavorites?.id)}
+      />
     </div>
   );
 };

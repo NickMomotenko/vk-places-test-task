@@ -1,5 +1,19 @@
-.infinite-block{
+.infinite-block {
   height: 20px;
   width: 100%;
-  background: black;
+
+  position: relative;
+
+  &__loader {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+
+    &.active {
+      visibility: visible;
+    }
+  }
 }

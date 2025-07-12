@@ -93,14 +93,21 @@ export function useInfiniteScrollData<T>({
       const newItems = await fetchPage(page);
       setData((prev) => [...prev, ...newItems]);
 
-      const isLastPage = newItems.length < pageSize || (maxPages && page >= maxPages);
+      const isLastPage =
+        newItems.length < pageSize || (maxPages && page >= maxPages);
       if (isLastPage) {
         setHasNextPage(false);
       } else {
         setPage((prev) => prev + 1);
       }
-    } catch (err) {
-      setError("Ошибка загрузки данных");
+    } catch (error) {
+      setError(() => {
+        const errorMessage =
+          error instanceof Error ? error.message : "Неизвестная ошибка";
+
+        return errorMessage;
+      });
+      setHasNextPage(false);
     } finally {
       setLoading(false);
     }
