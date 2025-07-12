@@ -25,7 +25,7 @@ export async function fetchMovies(
 }
 
 export async function fetchMovieById(id: number) {
-  const response = await fetch(`${BASE_URL}/${id}}`, {
+  const response = await fetch(`${BASE_URL}/${id}`, {
     headers: {
       "X-API-KEY": API_KEY,
       "Content-Type": "application/json",

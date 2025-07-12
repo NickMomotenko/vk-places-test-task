@@ -57,7 +57,7 @@ export const FilmCard: React.FC<FilmCard> = ({
           <div className="film-card__main">
             <div className="film-card__title">{name ?? alternativeName}</div>
             <div className="film-card__year">Год выпуска - {year}</div>
-            <div className="film-card__rating">Рейтинг - {rating.kp}</div>
+            <div className="film-card__rating">Рейтинг - {rating?.kp}</div>
             {fullview && (
               <div className="film-card__created-at">
                 Дата выхода - {normalizeDate(premiere?.world)}
@@ -77,7 +77,9 @@ export const FilmCard: React.FC<FilmCard> = ({
               </div>
               <div className="film-card__info-block">
                 <div className="film-card__info-title">Описание</div>
-                <div className="film-card__info-text">{description}</div>
+                <div className="film-card__info-text">
+                  {!description ? "Описания к фильму нет" : description}
+                </div>
               </div>
             </div>
           )}
