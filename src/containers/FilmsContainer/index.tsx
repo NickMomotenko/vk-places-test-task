@@ -18,6 +18,7 @@ import { fetchMovies } from "../../api/api";
 import { Button, Spinner } from "@vkontakte/vkui";
 
 import "./styles.scss";
+import { useEffect } from "react";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
@@ -44,6 +45,12 @@ export const FilmsContainer = () => {
     pageSize: 10,
     maxPages: 5,
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, 0);
+  }, []);
 
   return (
     <div className="films">

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-А;
 
 import { Button } from "@vkontakte/vkui";
 
