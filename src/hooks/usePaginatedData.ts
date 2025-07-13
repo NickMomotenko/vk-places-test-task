@@ -1,12 +1,6 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 
-type UseInfiniteScrollFromItemsProps<T> = {
-  items: T[];
-  pageSize?: number;
-};
-
-
 export function useInfiniteScrollFromItems<T>({
   items,
   pageSize = 10,

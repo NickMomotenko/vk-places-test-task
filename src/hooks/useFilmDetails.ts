@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { fetchMovieById } from "../api/api";
+import type { FilmType } from "../helpers/types";
 
 export const useFilmDetails = () => {
-  const [filmWithDetails, setFilmWithDetals] = useState({});
+  const [filmWithDetails, setFilmWithDetals] = useState<FilmType | any>({});
   const [error, setError] = useState("");
 
   const loadDetailsById = async (id: number) => {

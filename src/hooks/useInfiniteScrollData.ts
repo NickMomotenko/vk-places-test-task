@@ -1,72 +1,6 @@
-// import { useCallback, useEffect, useState } from "react";
-// import useInfiniteScroll from "react-infinite-scroll-hook";
-
-// type UseInfiniteScrollDataProps<T> = {
-//   fetchPage: (page: number) => Promise<T[]>;
-//   pageSize?: number;
-//   maxPages?: number;
-// };
-
-// export function useInfiniteScrollData<T>({
-//   fetchPage,
-//   pageSize = 50,
-//   maxPages = 5,
-// }: UseInfiniteScrollDataProps<T>) {
-//   const [data, setData] = useState<T[]>([]);
-//   const [page, setPage] = useState(1);
-//   const [loading, setLoading] = useState(false);
-//   const [hasNextPage, setHasNextPage] = useState(true);
-//   const [error, setError] = useState<null | string>(null);
-
-//   const load = useCallback(async () => {
-//     if (loading || !hasNextPage) return;
-
-//     setLoading(true);
-//     try {
-//       const newItems = await fetchPage(page);
-//       setData((prev) => [...prev, ...newItems]);
-
-//       if (newItems.length < pageSize || page >= maxPages) {
-//         setHasNextPage(false);
-//       } else {
-//         setPage((p) => p + 1);
-//       }
-//     } catch (err) {
-//       setError("Ошибка загрузки");
-//     } finally {
-//       setLoading(false);
-//     }
-//   }, [fetchPage, page, pageSize, hasNextPage, loading]);
-
-//   const [sentryRef] = useInfiniteScroll({
-//     loading,
-//     hasNextPage,
-//     onLoadMore: load,
-//     rootMargin: "10px 0px",
-//   });
-
-//   const reset = () => {
-//     setData([]);
-//     setPage(1);
-//     setHasNextPage(true);
-//   };
-
-//   useEffect(() => {
-//     load();
-//   }, []);
-
-//   return {
-//     data,
-//     load,
-//     loading,
-//     sentryRef,
-//     error,
-//     reset,
-//   };
-// }
-
 import { useState, useCallback, useEffect } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
+import type { FilmType } from "../helpers/types";
 
 interface InfiniteScrollOptions<T> {
   fetchPage: (page: number) => Promise<T[]>;
@@ -79,7 +13,7 @@ export function useInfiniteScrollData<T>({
   pageSize = 10,
   maxPages,
 }: InfiniteScrollOptions<T>) {
-  const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<FilmType[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -91,7 +25,7 @@ export function useInfiniteScrollData<T>({
     setLoading(true);
     try {
       const newItems = await fetchPage(page);
-      setData((prev) => [...prev, ...newItems]);
+      setData((prev: any) => [...prev, ...newItems]);
 
       const isLastPage =
         newItems.length < pageSize || (maxPages && page >= maxPages);

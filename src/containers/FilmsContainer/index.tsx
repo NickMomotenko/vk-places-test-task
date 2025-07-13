@@ -19,6 +19,7 @@ import { Button, Spinner } from "@vkontakte/vkui";
 
 import "./styles.scss";
 import { useEffect } from "react";
+import type { FilmType } from "../../helpers/types";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
@@ -122,7 +123,7 @@ export const FilmsContainer = () => {
                   <FilmCard
                     film={film}
                     onAddClick={openWithFilm}
-                    isFavorite={isFavorite(film?.id)}
+                    isFavorite={isFavorite(film && film.id)}
                   />
                 </li>
               ))}
@@ -134,7 +135,7 @@ export const FilmsContainer = () => {
           isActive={modal.isActive}
           onAdd={confirmAdd}
           onClose={cancel}
-          isFavorite={isFavorite(filmToFavorites?.id)}
+          isFavorite={isFavorite(filmToFavorites && filmToFavorites.id)}
         />
       )}
     </div>

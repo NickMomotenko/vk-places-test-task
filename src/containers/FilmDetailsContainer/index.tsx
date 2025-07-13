@@ -50,7 +50,7 @@ export const FilmDetailsContainer = () => {
         <FilmCard
           fullview
           film={filmWithDetails}
-          isFavorite={isFavorite(filmWithDetails?.id)}
+          isFavorite={isFavorite(filmWithDetails && filmWithDetails.id)}
           onAddClick={openWithFilm}
         />
       )}

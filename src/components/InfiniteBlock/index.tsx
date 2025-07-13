@@ -1,9 +1,14 @@
 import { forwardRef } from "react";
 
-import "./styles.scss";
 import { Spinner } from "@vkontakte/vkui";
 
-export const InfiniteBlock = forwardRef<HTMLDivElement>(({ loading }, ref) => {
+import "./styles.scss";
+
+type InfiniteBlockProps = {
+  loading?: boolean; 
+};
+
+export const InfiniteBlock = forwardRef<HTMLDivElement , InfiniteBlockProps>(({ loading }, ref) => {
   return (
     <div ref={ref} className="infinite-block">
       <div

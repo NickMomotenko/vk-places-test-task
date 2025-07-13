@@ -81,7 +81,7 @@ export const useMovieFilters = () => {
       if (Array.isArray(value)) {
         if (typeof value[0] === "string") {
           // Для genres — добавляем по одному
-          value.forEach((genre) => {
+          value.forEach((genre: any) => {
             params.append("genres.name", genre);
           });
         } else {

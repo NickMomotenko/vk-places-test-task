@@ -5,7 +5,7 @@ import { useModal } from "./useModal";
 import type { FilmType } from "../helpers/types";
 
 export const useFavoriteModal = () => {
-  const [filmToFavorites, setFilmToFavorites] = useState<{}>({});
+  const [filmToFavorites, setFilmToFavorites] = useState<FilmType | any>({});
 
   const modal = useModal();
 

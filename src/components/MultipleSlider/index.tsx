@@ -7,7 +7,7 @@ type MultipleSliderProps = {
   min?: number;
   max?: number;
   value: [number, number] | any;
-  onChange: () => void;
+  onChange: (value: number | [number, number]) => void;
   disabled?:boolean;
 };
 

@@ -1,16 +1,14 @@
+import { useEffect } from "react";
+
 import { FilmCard } from "../../components/FilmCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 import { Title } from "../../components/Title";
-
 import { ModalContainer } from "../../components/ModalContainer";
 
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-// import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";
-
-import "./styles.scss";
 import { useInfiniteScrollFromItems } from "../../hooks/usePaginatedData";
-import { fav } from "../../helpers/mocked";
-import { useEffect } from "react";
+
+import "./styles.scss"
 
 export const FavoritesFilmsContainer = () => {
   const {

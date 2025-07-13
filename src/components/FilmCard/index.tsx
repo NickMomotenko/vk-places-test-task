@@ -9,8 +9,8 @@ import type { FilmType } from "../../helpers/types";
 
 type FilmCard = {
   fullview?: boolean;
-  film?: FilmType;
-  onAddClick?: (film: FilmType) => void;
+  film?: FilmType | any;
+  onAddClick?: (film: FilmCard | any) => void;
   isFavorite?: boolean;
 };
 
@@ -77,7 +77,7 @@ export const FilmCard: React.FC<FilmCard> = ({
                 <div className="film-card__info-text">
                   {genres
                     ? "неизвестно"
-                    : genres?.map((genre) => genre.name).join(", ")}
+                    : genres?.map((genre: any) => genre.name).join(", ")}
                 </div>
               </div>
               <div className="film-card__info-block">
@@ -93,7 +93,7 @@ export const FilmCard: React.FC<FilmCard> = ({
           <Button
             onClick={(event) => {
               event.stopPropagation();
-              onAddClick(film);
+              onAddClick(film && film);
             }}
             mode={isFavorite ? "secondary" : "primary"}
           >
