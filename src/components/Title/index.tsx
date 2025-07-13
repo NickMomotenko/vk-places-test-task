@@ -4,10 +4,10 @@ import "./styles.scss";
 
 type TitleProps = {
   children: React.ReactNode;
-  level?: any;
+  level?: string;
 };
 
-export const Title: React.FC<TitleProps> = ({ children, ...rest }) => {
+export const Title: React.FC<TitleProps> = ({ children }, ...rest) => {
   return (
     <TitleVKUI className="title" {...rest}>
       {children}

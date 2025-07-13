@@ -1,9 +1,10 @@
+import type { FilmType } from "../helpers/types";
 import { useLocalStorage } from "./useLocaleStorage";
 
 export const useFavorites = () => {
-  const [favorites, setFavorites] = useLocalStorage<any[]>("favorites", []);
+  const [favorites, setFavorites] = useLocalStorage<FilmType[]>("favorites", []);
 
-  const addToFavorite = (film: any) => {
+  const addToFavorite = (film:FilmType) => {
     setFavorites((prev) => {
       let searchableFilm = prev.find((f) => f.id === film.id);
 

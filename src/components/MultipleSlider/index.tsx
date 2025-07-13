@@ -6,8 +6,8 @@ type MultipleSliderProps = {
   title: string;
   min?: number;
   max?: number;
-  value: any;
-  onChange: any;
+  value: [number, number] | any;
+  onChange: () => void;
   disabled?:boolean;
 };
 

@@ -5,11 +5,12 @@ import { Button } from "@vkontakte/vkui";
 import { normalizeDate } from "../../helpers/utils";
 
 import "./styles.scss";
+import type { FilmType } from "../../helpers/types";
 
 type FilmCard = {
   fullview?: boolean;
-  film?: any;
-  onAddClick?: any;
+  film?: FilmType;
+  onAddClick?: (film: FilmType) => void;
   isFavorite?: boolean;
 };
 

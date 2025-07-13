@@ -4,8 +4,8 @@ import "./styles.scss";
 type ModalContainerProps = {
   isActive: boolean;
   isFavorite: boolean;
-  onAdd: any;
-  onClose: any;
+  onAdd: () => void;
+  onClose: () => void;
 };
 
 export const ModalContainer: React.FC<ModalContainerProps> = ({

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useFavorites } from "./useFavorites";
 import { useModal } from "./useModal";
+import type { FilmType } from "../helpers/types";
 
 export const useFavoriteModal = () => {
   const [filmToFavorites, setFilmToFavorites] = useState<{}>({});
@@ -10,7 +11,7 @@ export const useFavoriteModal = () => {
 
   const { favorites, addToFavorite, isFavorite } = useFavorites();
 
-  const openWithFilm = (film: any) => {
+  const openWithFilm = (film: FilmType) => {
     setFilmToFavorites(film);
     modal.showModal();
   };

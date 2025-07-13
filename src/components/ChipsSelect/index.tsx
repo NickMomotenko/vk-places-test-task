@@ -8,8 +8,8 @@ import { genres } from "../../helpers/mocked";
 import "./styles.scss";
 
 type ChipsSelectsProps = {
-  data: any;
-  onChange: any;
+  data: string[];
+  onChange: (values: string[]) => void;
   disabled?:boolean;
 };
 
@@ -23,7 +23,7 @@ export const ChipsSelects: React.FC<ChipsSelectsProps> = ({
       <FormItem htmlFor="colorsWithoutButton" top="Выберите или добавьте жанр">
         <ChipsSelectVK
           id="colorsWithoutButton"
-          value={data.map((item: any) => ({ value: item, label: item }))}
+          value={data.map((item) => ({ value: item, label: item }))}
           onChange={(newValue) => onChange(newValue.map((item) => item.value))}
           options={genres.map(({ name }) => {
             return { value: name, label: name };
