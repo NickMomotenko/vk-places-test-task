@@ -19,7 +19,6 @@ import { Button, Spinner } from "@vkontakte/vkui";
 
 import "./styles.scss";
 import { useEffect } from "react";
-import type { FilmType } from "../../helpers/types";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();

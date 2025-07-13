@@ -10,7 +10,7 @@ import type { FilmType } from "../../helpers/types";
 type FilmCard = {
   fullview?: boolean;
   film?: FilmType | any;
-  onAddClick?: (film: FilmCard | any) => void;
+  onAddClick: (film: FilmCard | any) => void;
   isFavorite?: boolean;
 };
 
@@ -93,7 +93,7 @@ export const FilmCard: React.FC<FilmCard> = ({
           <Button
             onClick={(event) => {
               event.stopPropagation();
-              onAddClick(film && film);
+              onAddClick(film);
             }}
             mode={isFavorite ? "secondary" : "primary"}
           >

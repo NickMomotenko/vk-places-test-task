@@ -12,7 +12,7 @@ export const useFavoriteModal = () => {
   const { favorites, addToFavorite, isFavorite } = useFavorites();
 
   const openWithFilm = (film: FilmType) => {
-    setFilmToFavorites(film);
+    setFilmToFavorites(film && film);
     modal.showModal();
   };
 

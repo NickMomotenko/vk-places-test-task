@@ -1,12 +1,7 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
 
-import '@vkontakte/vkui/dist/vkui.css';
+import "@vkontakte/vkui/dist/vkui.css";
 
-
-
-createRoot(document.getElementById('root')!).render(
-    <App />
-)
+createRoot(document.getElementById("root")!).render(<App />);
