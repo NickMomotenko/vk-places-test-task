@@ -1,4 +1,4 @@
-export type FilmType = type Movie = {
+export type FilmType  = {
   status: null | string;
   externalId: {
     tmdb: number;
@@ -38,10 +38,10 @@ export type FilmType = type Movie = {
     name: string;
     nameEn: string;
   }>,
-  id: number;
-  type: "movie" | "series" | string;
-  name: null | string;
-  description: null | string;
+  id: number,
+  type: string,
+  name: string,
+  description: null | string,
   distributors: {
     distributor: null | string;
     distributorRelease: null | string;
