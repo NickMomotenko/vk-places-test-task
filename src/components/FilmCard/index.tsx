@@ -75,7 +75,7 @@ export const FilmCard: React.FC<FilmCard> = ({
               <div className="film-card__info-block">
                 <div className="film-card__info-title">Жанры</div>
                 <div className="film-card__info-text">
-                  {genres
+                  {!genres
                     ? "неизвестно"
                     : genres?.map((genre: any) => genre.name).join(", ")}
                 </div>

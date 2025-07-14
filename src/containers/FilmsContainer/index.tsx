@@ -42,9 +42,9 @@ export const FilmsContainer = () => {
     loading,
     error,
   } = useInfiniteScrollData({
-    fetchPage: (page) => fetchMovies(searchParams, page, 10),
-    pageSize: 10,
-    maxPages: 5,
+    fetchPage: (page) => fetchMovies(searchParams, page, 50),
+    pageSize: 50,
+    maxPages: 100,
   });
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export const FilmsContainer = () => {
       <div className="films__filters">
         <div className="films__genre">
           <ChipsSelects
-            disabled={false}
+            disabled={loading}
             data={genres}
             onChange={(selectedGenres: any) =>
               updateFilter({ genres: selectedGenres })
