@@ -1,7 +1,7 @@
 # 🎬 Фильмотека (Demo-приложение)
 
 ## 🔗 Демо
-[https://vk-smb-test-3fdy.vercel.app/](#)
+[https://vk-smb-test-3fdy.vercel.app/](https://vk-smb-test-3fdy.vercel.app/)
 
 ---
 
