@@ -8,7 +8,7 @@ import { ModalContainer } from "../../components/ModalContainer";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 import { useInfiniteScrollFromItems } from "../../hooks/usePaginatedData";
 
-import "./styles.scss"
+import "./styles.scss";
 
 export const FavoritesFilmsContainer = () => {
   const {
@@ -36,17 +36,22 @@ export const FavoritesFilmsContainer = () => {
     <div className="favorite-films">
       <Title>Избранные фильмы</Title>
       <div className="favorite-films__content">
-        <ul className="favorite-films__list">
-          {favoritesToRender?.map((film, ind) => (
-            <li className="favorite-films__item" key={ind}>
-              <FilmCard
-                film={film}
-                isFavorite={isFavorite(film?.id)}
-                onAddClick={openWithFilm}
-              />
-            </li>
-          ))}
-        </ul>
+        {!favoritesToRender.length ? (
+          <Title>Избранных фильмов еще нету</Title>
+        ) : (
+          <ul className="favorite-films__list">
+            {favoritesToRender?.map((film, ind) => (
+              <li className="favorite-films__item" key={ind}>
+                <FilmCard
+                  film={film}
+                  isFavorite={isFavorite(film?.id)}
+                  onAddClick={openWithFilm}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+
         <InfiniteBlock ref={sentryRef} />
       </div>
       <ModalContainer

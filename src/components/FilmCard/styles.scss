@@ -12,6 +12,10 @@
     box-shadow: 0 0 10px #00000030;
   }
 
+  &__main{
+    max-width: 250px;
+  }
+
   &__image {
     height: 145px;
     width: 130px;
@@ -46,7 +50,6 @@
 
   &__row {
     display: flex;
-    // flex: 1;
   }
 
   &__info {

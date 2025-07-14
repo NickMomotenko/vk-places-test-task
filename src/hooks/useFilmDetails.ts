@@ -8,7 +8,7 @@ export const useFilmDetails = () => {
 
   const loadDetailsById = async (id: number) => {
     try {
-      setError(""); // сброс предыдущей ошибки, если была
+      setError(""); 
       const data = await fetchMovieById(id);
       setFilmWithDetals(data);
     } catch (error: any) {

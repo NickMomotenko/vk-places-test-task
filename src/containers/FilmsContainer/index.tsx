@@ -78,7 +78,9 @@ export const FilmsContainer = () => {
                 title="По рейтингу"
                 disabled={loading}
                 value={rating}
-                onChange={(newValue: any) => updateFilter({ 'rating.kp': newValue })}
+                onChange={(newValue: any) =>
+                  updateFilter({ "rating.kp": newValue })
+                }
                 min={0}
                 max={10}
               />

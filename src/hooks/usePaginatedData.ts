@@ -27,11 +27,8 @@ export function useInfiniteScrollFromItems<T>({
     setPage(1);
   }, []);
 
-  // Умный сброс только при уменьшении общего количества (например, удаление)
   useEffect(() => {
     if (items.length < prevItemsLength.current) {
-      // Было удаление, не сбрасываем page
-      // но если удалили настолько, что текущая page слишком большая, корректируем
       const maxPage = Math.ceil(items.length / pageSize);
       if (page > maxPage) {
         setPage(maxPage);

@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 export const useMovieFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // ===== Helpers =====
   const parseRange = (value: string, fallback: [number, number]) => {
     if (!value) return fallback;
     const parts = value.split("-");
@@ -49,7 +48,6 @@ export const useMovieFilters = () => {
     }
   };
 
-  // ===== Update Filters =====
   const updateFilter = (
     newFilters: Record<string, string | string[] | [number, number]>
   ) => {
