@@ -7,7 +7,6 @@ import { Title } from "../../components/Title";
 import { SkeletonCard } from "../../components/SkeletonCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 
-import { ModalContainer } from "../../components/ModalContainer";
 
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
@@ -33,7 +32,6 @@ export const FilmsContainer = () => {
     filmToFavorites,
     openWithFilm,
     confirmAdd,
-    cancel,
   } = useFavoriteModal();
 
   const { addToComprasion, isCompresed } = useComprasionData();

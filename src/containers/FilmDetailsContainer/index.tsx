@@ -7,8 +7,8 @@ import { useEffect } from "react";
 import { useFilmDetails } from "../../hooks/useFilmDetails";
 import { Title } from "../../components/Title";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-// import { ModalContainer } from "../../components/ModalContainer";
 import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
+import { useComprasionData } from "../../hooks/useComprasionData";
 
 export const FilmDetailsContainer = () => {
   const params = useParams();
@@ -17,6 +17,8 @@ export const FilmDetailsContainer = () => {
 
   const { modal, isFavorite, filmToFavorites, openWithFilm, confirmAdd } =
     useFavoriteModal();
+
+  const { addToComprasion, isCompresed } = useComprasionData();
 
   useEffect(() => {
     const { id } = params;
@@ -45,22 +47,20 @@ export const FilmDetailsContainer = () => {
         <FilmCard
           fullview
           film={filmWithDetails}
-          isFavorite={isFavorite(filmWithDetails && filmWithDetails.id)}
+          isFavorite={isFavorite(filmWithDetails?.id)}
           onAddClick={openWithFilm}
+          onComprasionClick={addToComprasion}
+          isCompresed={isCompresed(filmWithDetails && filmWithDetails.id)}
         />
       )}
-      {/* <ModalContainer
-        isActive={modal.isActive}
-        onAdd={() => {
-          confirmAdd();
-        }}
-        onClose={cancel}
-        isFavorite={isFavorite(filmToFavorites?.id)}
-      /> */}
       <ModalCard
         open={modal.isActive}
         onClose={modal.closeModal}
-        title={!isFavorite(filmToFavorites?.id) ? "Добавить в избранное?" : "Удалить из избранного?"}
+        title={
+          !isFavorite(filmToFavorites?.id)
+            ? "Добавить в избранное?"
+            : "Удалить из избранного?"
+        }
         actions={
           <>
             <Spacing size={16} />

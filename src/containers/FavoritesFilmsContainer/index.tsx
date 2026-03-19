@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { FilmCard } from "../../components/FilmCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 import { Title } from "../../components/Title";
-import { ModalContainer } from "../../components/ModalContainer";
 
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 import { useInfiniteScrollFromItems } from "../../hooks/usePaginatedData";
 
 import "./styles.scss";
 import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
+import { useComprasionData } from "../../hooks/useComprasionData";
 
 export const FavoritesFilmsContainer = () => {
   const {
@@ -25,6 +25,8 @@ export const FavoritesFilmsContainer = () => {
     items: favorites,
     pageSize: 10,
   });
+
+  const { addToComprasion, isCompresed } = useComprasionData();
 
   useEffect(() => {
     setTimeout(() => {
@@ -46,6 +48,8 @@ export const FavoritesFilmsContainer = () => {
                   film={film}
                   isFavorite={isFavorite(film?.id)}
                   onAddClick={openWithFilm}
+                  onComprasionClick={addToComprasion}
+                  isCompresed={isCompresed(film && film.id)}
                 />
               </li>
             ))}
