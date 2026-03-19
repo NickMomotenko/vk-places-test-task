@@ -9,7 +9,7 @@ import { InfiniteBlock } from "../../components/InfiniteBlock";
 
 
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-import { useMovieFilters } from "../../hooks/useMovieFilters";
+import { useMovieFilters } from "../../hooks/useMovieFilters2";
 import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";
 
 import { fetchMovies } from "../../api/api";
