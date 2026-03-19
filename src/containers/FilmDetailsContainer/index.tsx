@@ -7,21 +7,16 @@ import { useEffect } from "react";
 import { useFilmDetails } from "../../hooks/useFilmDetails";
 import { Title } from "../../components/Title";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-import { ModalContainer } from "../../components/ModalContainer";
+// import { ModalContainer } from "../../components/ModalContainer";
+import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
 
 export const FilmDetailsContainer = () => {
   const params = useParams();
 
   const { loadDetailsById, filmWithDetails, error } = useFilmDetails();
 
-  const {
-    modal,
-    isFavorite,
-    filmToFavorites,
-    openWithFilm,
-    confirmAdd,
-    cancel,
-  } = useFavoriteModal();
+  const { modal, isFavorite, filmToFavorites, openWithFilm, confirmAdd } =
+    useFavoriteModal();
 
   useEffect(() => {
     const { id } = params;
@@ -54,13 +49,46 @@ export const FilmDetailsContainer = () => {
           onAddClick={openWithFilm}
         />
       )}
-      <ModalContainer
+      {/* <ModalContainer
         isActive={modal.isActive}
         onAdd={() => {
           confirmAdd();
         }}
         onClose={cancel}
         isFavorite={isFavorite(filmToFavorites?.id)}
+      /> */}
+      <ModalCard
+        open={modal.isActive}
+        onClose={modal.closeModal}
+        title={!isFavorite(filmToFavorites?.id) ? "Добавить в избранное?" : "Удалить из избранного?"}
+        actions={
+          <>
+            <Spacing size={16} />
+            <ButtonGroup gap="m" stretched>
+              <Button
+                key="deny"
+                size="l"
+                mode="secondary"
+                stretched
+                onClick={() => {
+                  modal.closeModal();
+                  confirmAdd();
+                }}
+              >
+                {!isFavorite(filmToFavorites?.id) ? "Добавить" : "Удалить"}
+              </Button>
+              <Button
+                key="allow"
+                size="l"
+                mode="primary"
+                stretched
+                onClick={modal.closeModal}
+              >
+                Отмена
+              </Button>
+            </ButtonGroup>
+          </>
+        }
       />
     </div>
   );

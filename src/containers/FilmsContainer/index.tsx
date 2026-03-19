@@ -15,7 +15,7 @@ import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";
 
 import { fetchMovies } from "../../api/api";
 
-import { Button, Spinner } from "@vkontakte/vkui";
+import { Button, ButtonGroup, ModalCard, Spacing, Spinner } from "@vkontakte/vkui";
 
 import "./styles.scss";
 import { useEffect } from "react";
@@ -36,7 +36,7 @@ export const FilmsContainer = () => {
     cancel,
   } = useFavoriteModal();
 
-  const { addToComprasion , isCompresed } = useComprasionData();
+  const { addToComprasion, isCompresed } = useComprasionData();
 
   const {
     data: movies,
@@ -136,14 +136,43 @@ export const FilmsContainer = () => {
         </ul>
         <InfiniteBlock ref={sentryRef} loading={loading} />
       </div>
-      {modal.isActive && (
-        <ModalContainer
-          isActive={modal.isActive}
-          onAdd={confirmAdd}
-          onClose={cancel}
-          isFavorite={isFavorite(filmToFavorites && filmToFavorites.id)}
-        />
-      )}
+      <ModalCard
+        open={modal.isActive}
+        onClose={modal.closeModal}
+        title={
+          !isFavorite(filmToFavorites?.id)
+            ? "Добавить в избранное?"
+            : "Удалить из избранного?"
+        }
+        actions={
+          <>
+            <Spacing size={16} />
+            <ButtonGroup gap="m" stretched>
+              <Button
+                key="deny"
+                size="l"
+                mode="secondary"
+                stretched
+                onClick={() => {
+                  modal.closeModal();
+                  confirmAdd();
+                }}
+              >
+                {!isFavorite(filmToFavorites?.id) ? "Добавить" : "Удалить"}
+              </Button>
+              <Button
+                key="allow"
+                size="l"
+                mode="primary"
+                stretched
+                onClick={modal.closeModal}
+              >
+                Отмена
+              </Button>
+            </ButtonGroup>
+          </>
+        }
+      />
     </div>
   );
 };

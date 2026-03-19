@@ -10,8 +10,8 @@ import type { FilmType } from "../../helpers/types";
 type FilmCard = {
   fullview?: boolean;
   film?: FilmType | any;
-  onAddClick: (film: FilmCard | any) => void;
-  onComprasionClick: (film: FilmCard | any) => void;
+  onAddClick?: (film: FilmCard | any) => void;
+  onComprasionClick?: (film: FilmCard | any) => void;
   isFavorite?: boolean;
   isCompresed?: boolean;
 };
