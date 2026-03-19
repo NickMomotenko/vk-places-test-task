@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import useInfiniteScroll from "react-infinite-scroll-hook";
 import type { FilmType } from "../helpers/types";
+import { useSentryRef } from "./useSentryRef";
 
 interface InfiniteScrollOptions<T> {
   fetchPage: (page: number) => Promise<T[]>;
@@ -25,7 +25,7 @@ export function useInfiniteScrollData<T>({
     setLoading(true);
     try {
       const newItems = await fetchPage(page);
-      setData((prev: any) => [...prev, ...newItems]);
+      setData((prev:any) => [...prev, ...newItems]);
 
       const isLastPage =
         newItems.length < pageSize || (maxPages && page >= maxPages);
@@ -35,12 +35,9 @@ export function useInfiniteScrollData<T>({
         setPage((prev) => prev + 1);
       }
     } catch (error) {
-      setError(() => {
-        const errorMessage =
-          error instanceof Error ? error.message : "Неизвестная ошибка";
-
-        return errorMessage;
-      });
+      setError(
+        error instanceof Error ? error.message : "Неизвестная ошибка"
+      );
       setHasNextPage(false);
     } finally {
       setLoading(false);
@@ -54,15 +51,10 @@ export function useInfiniteScrollData<T>({
     setError(null);
   };
 
-  const [sentryRef] = useInfiniteScroll({
-    loading,
-    hasNextPage,
-    onLoadMore: load,
-    rootMargin: "20px 0px",
-  });
+  const sentryRef = useSentryRef({ loading, hasNextPage, onLoadMore: load });
 
   useEffect(() => {
-    load(); // загрузка первой страницы
+    load();
   }, []);
 
   return {

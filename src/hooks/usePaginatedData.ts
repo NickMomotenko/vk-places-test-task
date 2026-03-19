@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
-import useInfiniteScroll from "react-infinite-scroll-hook";
+import { useSentryRef } from "./useSentryRef";
 
+// useInfiniteScrollFromItems.ts
 export function useInfiniteScrollFromItems<T>({
   items,
   pageSize = 10,
@@ -38,12 +39,7 @@ export function useInfiniteScrollFromItems<T>({
     prevItemsLength.current = items.length;
   }, [items.length, page, pageSize]);
 
-  const [sentryRef] = useInfiniteScroll({
-    loading: false,
-    hasNextPage,
-    onLoadMore: loadMore,
-    rootMargin: "20px 0px",
-  });
+  const sentryRef = useSentryRef({ hasNextPage, onLoadMore: loadMore });
 
   return {
     data,
