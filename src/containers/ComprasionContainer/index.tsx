@@ -14,33 +14,33 @@ export const ComprasionContainer = () => {
             <tr className="comprasion__table-head">
               <td className="comprasion__table-base">Название</td>
               {comprasionData.map((film) => (
-                <td key={film.id} className="comprasion__table-title">{film?.alternativeName}</td>
+                <td key={film.id} className="comprasion__table-title">{film?.alternativeName ?? `-`}</td>
               ))}
             </tr>
             <tr>
               <td className="comprasion__table-base">Год выпуска</td>
               {comprasionData.map((film) => (
-                <td key={film.id}>{film?.year}</td>
+                <td key={film.id}>{film?.year ?? `-`}</td>
               ))}
             </tr>
             <tr>
               <td className="comprasion__table-base">Рейтинг</td>
               {comprasionData.map((film) => (
-                <td key={film.id}>⭐ {film?.rating?.kp} (kp)</td>
+                <td key={film.id}>⭐ {film?.rating?.kp ?? `-`} (kp)</td>
               ))}
             </tr>
             <tr>
               <td className="comprasion__table-base">Жанры</td>
               {comprasionData.map((film) => (
                 <td key={film.id}>
-                  {film?.genres?.map((genre: any) => genre.name).join(", ")}
+                  {film?.genres?.map((genre: any) => genre.name).join(", ") ?? `-`}
                 </td>
               ))}
             </tr>
             <tr>
               <td className="comprasion__table-base">Длительность</td>
               {comprasionData.map((film) => (
-                <td key={film.id}>{film?.movieLength} min</td>
+                <td key={film.id}>{film?.movieLength ? `${film?.movieLength} min` : `-`}</td>
               ))}
             </tr>
           </tbody>  
