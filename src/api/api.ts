@@ -1,6 +1,6 @@
-// const API_KEY = "3M4PM11-HNQMSZB-N4QY5C9-VWBQSXP"; // 1
-const API_KEY = "N92J5CH-5C6M21R-G6ZS6NY-PKBKJ78";
-const BASE_URL = "https://api.kinopoisk.dev/v1.4/movie";
+const API_KEY = "3M4PM11-HNQMSZB-N4QY5C9-VWBQSXP";
+const BASE_URL = "https://api.poiskkino.dev/v1.5/movie";
+const BASE_URL_BY_ID = "https://api.poiskkino.dev/v1.4/movie";
 
 export async function fetchMovies(
   params: URLSearchParams,
@@ -30,7 +30,7 @@ export async function fetchMovies(
 }
 
 export async function fetchMovieById(id: number) {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${BASE_URL_BY_ID}/${id}`, {
     headers: {
       "X-API-KEY": API_KEY,
       "Content-Type": "application/json",

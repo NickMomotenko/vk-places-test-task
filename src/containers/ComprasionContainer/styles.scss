@@ -1,0 +1,38 @@
+.comprasion {
+  table {
+    width: 100%;
+  }
+
+  td {
+    width: calc(100% / 2 - 10%);
+    padding: 0 10px;
+  }
+
+  tr {
+    display: flex;
+    padding: 15px 0;
+    border-radius: 5px;
+    background: #f5eeee47;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__table {
+    &-base {
+      width: calc(100% / 5) !important;
+      font-weight: 600;
+      color: #0000ff75;
+    }
+
+    &-title {
+      font-weight: 500;
+    }
+
+    &-head {
+      border-bottom: 1px solid #0000ff26;
+    }
+  }
+}

@@ -20,6 +20,7 @@
     height: 145px;
     width: 130px;
     border: 1px solid transparent;
+    flex-shrink: 0;
 
     &.no-preview {
       border-color: #0000000d;
@@ -97,5 +98,9 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 15px;
+  }
+
+  &__button-comparison{
+    margin-left: 5px !important;
   }
 }

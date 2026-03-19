@@ -11,7 +11,9 @@ type FilmCard = {
   fullview?: boolean;
   film?: FilmType | any;
   onAddClick: (film: FilmCard | any) => void;
+  onComprasionClick: (film: FilmCard | any) => void;
   isFavorite?: boolean;
+  isCompresed?: boolean;
 };
 
 export const FilmCard: React.FC<FilmCard> = ({
@@ -19,6 +21,8 @@ export const FilmCard: React.FC<FilmCard> = ({
   film,
   isFavorite,
   onAddClick,
+  onComprasionClick,
+  isCompresed,
 }) => {
   const {
     id,
@@ -98,6 +102,16 @@ export const FilmCard: React.FC<FilmCard> = ({
             mode={isFavorite ? "secondary" : "primary"}
           >
             {!isFavorite ? "В избранное" : "Убрать из избранного"}
+          </Button>
+          <Button
+            onClick={(event) => {
+              event.stopPropagation();
+              onComprasionClick(film);
+            }}
+            className="film-card__button-comparison"
+             mode={isCompresed ? "secondary" : "primary"}
+          >
+            {!isCompresed ? "В сравнение" : "Убрать из сравнения"}
           </Button>
         </div>
       </div>

@@ -19,6 +19,7 @@ import { Button, Spinner } from "@vkontakte/vkui";
 
 import "./styles.scss";
 import { useEffect } from "react";
+import { useComprasionData } from "../../hooks/useComprasionData";
 
 export const FilmsContainer = () => {
   const { filters, updateFilter } = useMovieFilters();
@@ -34,6 +35,8 @@ export const FilmsContainer = () => {
     confirmAdd,
     cancel,
   } = useFavoriteModal();
+
+  const { addToComprasion , isCompresed } = useComprasionData();
 
   const {
     data: movies,
@@ -124,7 +127,9 @@ export const FilmsContainer = () => {
                   <FilmCard
                     film={film}
                     onAddClick={openWithFilm}
+                    onComprasionClick={addToComprasion}
                     isFavorite={isFavorite(film && film.id)}
+                    isCompresed={isCompresed(film && film.id)}
                   />
                 </li>
               ))}
