@@ -97,7 +97,7 @@ export const FilmCard: React.FC<FilmCard> = ({
           <Button
             onClick={(event) => {
               event.stopPropagation();
-              onAddClick(film);
+              onAddClick && onAddClick(film);
             }}
             mode={isFavorite ? "secondary" : "primary"}
           >
@@ -106,7 +106,7 @@ export const FilmCard: React.FC<FilmCard> = ({
           <Button
             onClick={(event) => {
               event.stopPropagation();
-              onComprasionClick(film);
+              onComprasionClick && onComprasionClick(film);
             }}
             className="film-card__button-comparison"
              mode={isCompresed ? "secondary" : "primary"}
