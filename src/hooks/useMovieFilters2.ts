@@ -15,7 +15,7 @@ export const useMovieFilters = () => {
     Math.max(min, Math.min(max, val));
 
   // Теперь жанры хранятся как ?genres=аниме,вестерн
-  const genresParam = searchParams.get("genres") || "";
+  const genresParam = searchParams.get("genres.name") || "";
   const genres = genresParam ? genresParam.split(",") : [];
 
   const ratingParam = searchParams.get("rating.kp") || "";
@@ -55,15 +55,14 @@ export const useMovieFilters = () => {
       const params = new URLSearchParams(prev);
 
       for (const [key, value] of Object.entries(newFilters)) {
-        if (key === "genres") {
+        if (key === "genres.name") {
           const arr = value as string[];
           if (arr.length === 0) {
-            params.delete("genres");
+            params.delete("genres.name");
           } else {
-            params.set("genres", arr.join(","));
+            params.set("genres.name", arr.join(","));
           }
         } else if (Array.isArray(value)) {
-          // диапазон [number, number]
           const [start, end] = value as [number, number];
           params.set(key, start === end ? `${start}` : `${start}-${end}`);
         } else {

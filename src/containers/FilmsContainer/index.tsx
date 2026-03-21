@@ -68,7 +68,7 @@ export const FilmsContainer = () => {
             disabled={loading}
             data={genres}
             onChange={(selectedGenres: any) =>
-              updateFilter({ genres: selectedGenres })
+              updateFilter({ 'genres.name': selectedGenres })
             }
           />
         </div>
