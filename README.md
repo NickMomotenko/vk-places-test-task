@@ -1,7 +1,7 @@
 # 🎬 Фильмотека (Demo-приложение)
 
 ## 🔗 Демо
-[https://vk-smb-test-3fdy.vercel.app/](https://vk-smb-test-3fdy.vercel.app/)
+[https://vk-places-test-task-w8js.vercel.app/](https://vk-places-test-task-w8js.vercel.app/)
 
 ---
 
@@ -42,6 +42,9 @@ src/
 
 - **FilmDetailsContainer**  
   Загружает полную информацию о фильме по `id` из URL и делает запрос к API.
+
+- **ComprasionContainer**  
+  Отображает таблицу сравнения двух фильмов. Данные сохраняются в `localStorage`.
 
 ---
 
