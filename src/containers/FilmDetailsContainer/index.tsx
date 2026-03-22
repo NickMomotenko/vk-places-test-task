@@ -1,13 +1,14 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
 
 import { FilmCard } from "../../components/FilmCard";
 import { SkeletonCard } from "../../components/SkeletonCard";
-
-import { useEffect } from "react";
-import { useFilmDetails } from "../../hooks/useFilmDetails";
 import { Title } from "../../components/Title";
+
+import { useFilmDetails } from "../../hooks/useFilmDetails";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
-import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
 import { useComprasionData } from "../../hooks/useComprasionData";
 
 export const FilmDetailsContainer = () => {

@@ -1,5 +1,7 @@
 import { Title } from "../../components/Title";
+
 import { useComprasionData } from "../../hooks/useComprasionData";
+
 import "./styles.scss";
 
 export const ComprasionContainer = () => {

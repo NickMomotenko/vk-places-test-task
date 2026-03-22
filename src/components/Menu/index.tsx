@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom";
 
+import { Counter } from "@vkontakte/vkui";
+
 import { ROUTES } from "./../../helpers/routes";
 
-import "./styles.scss";
 import { useFavorites } from "../../hooks/useFavorites";
 import { useComprasionData } from "../../hooks/useComprasionData";
-import { Counter } from "@vkontakte/vkui";
+
+import "./styles.scss";
 
 export const Menu = () => {
   const { favorites } = useFavorites();

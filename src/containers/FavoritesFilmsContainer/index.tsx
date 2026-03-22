@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
+
 import { FilmCard } from "../../components/FilmCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 import { Title } from "../../components/Title";
@@ -7,9 +9,9 @@ import { Title } from "../../components/Title";
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 import { useInfiniteScrollFromItems } from "../../hooks/usePaginatedData";
 
-import "./styles.scss";
-import { ModalCard, Spacing, ButtonGroup, Button } from "@vkontakte/vkui";
 import { useComprasionData } from "../../hooks/useComprasionData";
+
+import "./styles.scss";
 
 export const FavoritesFilmsContainer = () => {
   const {

@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@vkontakte/vkui";
 
 import { normalizeDate } from "../../helpers/utils";
+import type { FilmType } from "../../helpers/types";
 
 import "./styles.scss";
-import type { FilmType } from "../../helpers/types";
+
 
 type FilmCard = {
   fullview?: boolean;

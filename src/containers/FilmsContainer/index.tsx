@@ -1,4 +1,13 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+
+import {
+  Button,
+  ButtonGroup,
+  ModalCard,
+  Spacing,
+  Spinner,
+} from "@vkontakte/vkui";
 
 import { MultipleSlider } from "../../components/MultipleSlider";
 import { ChipsSelects } from "../../components/ChipsSelect";
@@ -7,17 +16,14 @@ import { Title } from "../../components/Title";
 import { SkeletonCard } from "../../components/SkeletonCard";
 import { InfiniteBlock } from "../../components/InfiniteBlock";
 
-
 import { useFavoriteModal } from "../../hooks/useFavoriteModal";
 import { useMovieFilters } from "../../hooks/useMovieFilters2";
 import { useInfiniteScrollData } from "../../hooks/useInfiniteScrollData";
 
 import { fetchMovies } from "../../api/api";
 
-import { Button, ButtonGroup, ModalCard, Spacing, Spinner } from "@vkontakte/vkui";
-
 import "./styles.scss";
-import { useEffect } from "react";
+
 import { useComprasionData } from "../../hooks/useComprasionData";
 
 export const FilmsContainer = () => {
@@ -26,13 +32,8 @@ export const FilmsContainer = () => {
 
   const [searchParams] = useSearchParams();
 
-  const {
-    modal,
-    isFavorite,
-    filmToFavorites,
-    openWithFilm,
-    confirmAdd,
-  } = useFavoriteModal();
+  const { modal, isFavorite, filmToFavorites, openWithFilm, confirmAdd } =
+    useFavoriteModal();
 
   const { addToComprasion, isCompresed } = useComprasionData();
 
@@ -68,7 +69,7 @@ export const FilmsContainer = () => {
             disabled={loading}
             data={genres}
             onChange={(selectedGenres: any) =>
-              updateFilter({ 'genres.name': selectedGenres })
+              updateFilter({ "genres.name": selectedGenres })
             }
           />
         </div>
